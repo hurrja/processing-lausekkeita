@@ -1,0 +1,145 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:nil broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:nil toc:nil todo:t |:t
+#+LANGUAGE: fi
+
+#+latex_header: \usepackage[a4paper,margin=1cm,landscape]{geometry}
+#+latex_header: \usepackage{array,multicol,lscape}
+#+latex_header: \pagestyle{empty}
+
+#+latex: {\large\bfseries\sffamily Yleisesti käytettyjä Processing-lausekkeita} \hfill {\sffamily Jarmo Hurri,} \texttt{jarmo.hurri@syk.fi}\\[.4cm]
+#+BEGIN_CENTER
+
+#+latex: \scriptsize
+#+latex: \begin{multicols}{2}
+#+attr_latex: :align >{\ttfamily}l l
+| @@latex:\textrm{@@lauseke@@latex:}@@     | arvo / vaikutus                                        |
+|------------------------------------------+--------------------------------------------------------|
+| size (600, 400);                         | piirtoikkunan koko \(600\times 400\)                   |
+| width                                    | ikkunan leveys                                         |
+| height                                   | ikkunan korkeus                                        |
+| rect (30, 50, 10, 20);                   | suorak., yläk. \((30,50)\), \(\ell=10\), \(k = 20\)    |
+| triangle (20, 40, 70, 80, 50, 100);      | kolmio, kärkip. \((20,40),\) \((70,80),\) \((50,100)\) |
+| quad (1, 2, 30, 40, 50, 60, 70, 80);     | nelikulmio, kärkip. \((1,2),\) \((30,40), \ldots\)     |
+| ellipse (30, 70, 10, 10);                | ympyrä, keskip. \((30,70),\) \(d=10\)                  |
+| line (0, 0, 200, 100);                   | jana \((0,0)\)--\((200,100)\)                          |
+| point (100, 200);                        | piste \((100, 200)\)                                   |
+|------------------------------------------+--------------------------------------------------------|
+| colorMode (HSB, 100);                    | HSB-värit, max. 100 (oletettu alla)                    |
+| fill (100);                              | valkoinen täyttöväri                                   |
+| fill (0, 100, 100);                      | punainen täyttöväri                                    |
+| background (0);                          | musta tausta                                           |
+| background (66, 50, 100);                | vähemmän kylläinen sininen                             |
+| noStroke ();                             | ei ääriviivoja                                         |
+| stroke (35, 100, 50);                    | vähemmän kirkas vihreä                                 |
+| strokeWeight (10);                       | paksut viivat                                          |
+|------------------------------------------+--------------------------------------------------------|
+| text ("tekstiä", 200, 100);              | teksti kohtaan \((200,100)\)                           |
+| textSize (32);                           | suurempi kirjasinkoko (32 pikseliä)                    |
+| textAlign (CENTER, CENTER);              | tekstin keskittäminen                                  |
+|------------------------------------------+--------------------------------------------------------|
+| void setup () {} void draw () {}         | (tyhjä) alustus- ja piirtofunktio                      |
+| frameRate (10);                          | 10 kuvaa sekunnissa                                    |
+| int t = millis ();                       | aika ohjelman alusta millisekunteina                   |
+| noLoop ();                               | ei animoida                                            |
+| void mousePressed () { background (0); } | painamalla musta tausta                                |
+|------------------------------------------+--------------------------------------------------------|
+| // ei kiinnosta tietokonetta             | kommentti                                              |
+| 3 / 2                                    | 1                                                      |
+| 3 / 2.0                                  | 1.5                                                    |
+| 22 % 7                                   | 1 (jakojäännös)                                        |
+| final int SIVU = 20;                     | kokonaislukuvakio                                      |
+| float s = 5.4;                           | liukulukumuuttuja                                      |
+| int i;                                   | kokonaislukumuuttuja                                   |
+| i++;                                     | kasvattaminen yhdellä                                  |
+| i----;                                   | vähentäminen yhdellä                                   |
+| i += 3;                                  | kasvattaminen kolmella                                 |
+| i -= 2;                                  | vähentäminen kahdella                                  |
+| i *= 10;                                 | kertominen luvulla 10                                  |
+| i /= 2;                                  | jakaminen luvulla 2                                    |
+|------------------------------------------+--------------------------------------------------------|
+| int i = 0; while (i < 10) i++;           | kasvatetaan kun < 10                                   |
+| for (int i = 0; i < 10; i++);            | sama kuin edellä                                       |
+| boolean b;                               | totuusarvomuuttuja                                     |
+| if (c > d) b = true; else b = false;     | ~b~ kertoo onko ~c > d~                                |
+| b = (c > d ?\ensp{}true :\ensp{}false);  | sama kuin edellä (lyhyt muoto)                         |
+| b = (c > d);                             | sama kuin edellä                                       |
+| if (c > d) { c----; d++; }               | lauselohko                                             |
+| ~==~                                     | yhtäsuuruus                                            |
+| ~!=~                                     | erisuuruus                                             |
+| < <= > >=                                | vertailut                                              |
+| (1 ~==~ 2) \(\vert\vert\) (3 ~==~ 3)     | ~true~ (tai)                                           |
+| (1 ~==~ 2) && (3 ~==~ 3)                 | ~false~ (ja)                                           |
+| !true                                    | ~false~ (negaatio)                                     |
+
+
+#+attr_latex: :align >{\ttfamily}l l
+| @@latex:\textrm{@@lauseke@@latex:}@@           | arvo / vaikutus                                         |
+|------------------------------------------------+---------------------------------------------------------|
+| void p (float x, float y) { point (x,y); }     | pisteen piirtävä funktio                                |
+| float f (float x) { return (x * x); }          | funktio \(f (x) = x^2\)                                 |
+|------------------------------------------------+---------------------------------------------------------|
+| float s = random (5);                          | satunnaisluku \(s\), \(0 \leq s < 5\)                   |
+| float r = random (1, 2);                       | satunnaisluku \(r\), \(1 \leq r < 2\)                   |
+| floor (1.99);                                  | 1 (pyöristys alaspäin)                                  |
+| int k = floor (random (3));                    | satunnaisesti 0, 1 tai 2                                |
+|------------------------------------------------+---------------------------------------------------------|
+| final float[] XT = {0, 1.1, 5.5};              | taulukkovakio, 3 lukua                                  |
+| float xt[] = new float [3];                    | taulukko 3 luvulle                                      |
+| xt [2] = -1;                                   | taulukon 3. elementille arvo \(-1\)                     |
+| float a = xt [0] + xt [1];                     | taulukon 2 ensimmäisen luvun summa                      |
+| for (int i = 0; i < xt.length; i++) xt [i]++;  | kasvatetaan kaikkia yhdellä                             |
+|------------------------------------------------+---------------------------------------------------------|
+| class Luokka { Luokka () { j = 1; } float j; } | luokka jossa konstruktori ja jäsenmuuttuja ~j~          |
+| Luokka olio = new Luokka ();                   | uuden olion rakentaminen                                |
+| olio.j = 5;                                    | jäsenmuuttujan arvon asettaminen                        |
+| Luokka olematon = null;                        | muuttuja ~olematon~ ei viittaa olioon                   |
+| this                                           | tämä olio (jäsenfunktion sisällä)                       |
+|------------------------------------------------+---------------------------------------------------------|
+| translate (width / 2.0, height / 2.0);         | origo piirtoikkunan keskelle                            |
+| scale (1, -1);                                 | \(y\)-akselin kasvusuunnan vaihto                       |
+| rotate (radians (90));                         | kierto 90\(^\circ\) (piste \((1, 0)\rightarrow(0, 1)\)) |
+|------------------------------------------------+---------------------------------------------------------|
+
+#+name: hs-color-map
+#+BEGIN_SRC asymptote :file hs-color-map.pdf :cache yes
+  import unicode;
+  import graph;
+  size (15cm);
+
+  int LEVEYS = 100, KORKEUS = 100;
+  int KOMPONENTTI_LAATIKOT_N = 100;
+
+  real laatikonLeveys = ((real) LEVEYS) / KOMPONENTTI_LAATIKOT_N;
+
+  for (int l = 0;  l < KOMPONENTTI_LAATIKOT_N; ++l)
+  {
+    real h = ((real) l) / KOMPONENTTI_LAATIKOT_N * 360;
+    real vasenReuna = l * laatikonLeveys;
+    path alue = shift ((vasenReuna, 0)) * xscale (laatikonLeveys)
+      ,* yscale (KORKEUS) * unitsquare;
+    pair vasenAlakulma = min (alue);
+    pair oikeaYlakulma = max (alue);
+    real v = .8;
+    axialshade (alue,
+                hsv (h, 0, v),
+                vasenAlakulma,
+                hsv (h, 1, v),
+                (vasenAlakulma.x, oikeaYlakulma.y));
+    xaxis (Label ("sävy (H)", MidPoint), xmin = 0, xmax = 100, RightTicks);
+    xaxis (axis = Top, xmin = 0, xmax = 100, LeftTicks);
+    yaxis (Label ("kylläisyys (S)", MidPoint), ymin = 0, ymax = 100, LeftTicks);
+    yaxis (axis = Right, ymin = 0, ymax = 100, RightTicks);
+  }
+#+END_SRC
+
+#+latex: \begin{minipage}[t]{\linewidth}\raggedright\bfseries\sffamily Eri sävyn (H) ja kylläisyyden (S) arvoilla saatavia värejä, kun kirkkaus (B) on 80\end{minipage}
+#+attr_latex: :width .6\linewidth
+#+RESULTS[3132e5ae68af4c50531e54c8740e7b9b48492c15]: hs-color-map
+[[file:hs-color-map.pdf]]
+
+#+latex: \end{multicols}
+#+END_CENTER
+
